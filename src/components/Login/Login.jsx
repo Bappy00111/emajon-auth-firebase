@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import './Login.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContex } from '../Providers/AuthProviders';
 
 const Login = () => {
     const {crateLogin} = useContext(AuthContex);
+    const navegate = useNavigate();
 
     const handleLogin = event =>{
         event.preventDefault();
@@ -12,6 +13,7 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         form.reset();
+        navegate('/orders')
         console.log(email,password)
 
         crateLogin(email,password)

@@ -10,6 +10,7 @@ const auth = getAuth(app);
 
 const AuthProviders = ({children}) => {
    const [user,setUser] = useState(null);
+   const [lodding,UseLodding] = useState(true)
 
    const crateUser = (email,password) =>{
     return createUserWithEmailAndPassword(auth,email,password) 
@@ -27,6 +28,7 @@ const AuthProviders = ({children}) => {
    useEffect(()=>{
     const unsubscrib = onAuthStateChanged(auth,currentUser =>{
         setUser(currentUser)
+        UseLodding(false);
         // console.log('Auth state change',currentUser)
     });
 
@@ -44,7 +46,8 @@ const AuthProviders = ({children}) => {
         user,
         crateUser,
         crateLogin,
-        logOut
+        logOut,
+        lodding
        
     }
     return (
