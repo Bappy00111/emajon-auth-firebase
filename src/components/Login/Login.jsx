@@ -1,11 +1,15 @@
 import React, { useContext } from 'react';
 import './Login.css'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContex } from '../Providers/AuthProviders';
 
 const Login = () => {
     const {crateLogin} = useContext(AuthContex);
     const navegate = useNavigate();
+    const location = useLocation();
+    console.log(location)
+
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogin = event =>{
         event.preventDefault();
@@ -13,7 +17,7 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         form.reset();
-        navegate('/orders')
+        navegate(from, { replace: true })
         console.log(email,password)
 
         crateLogin(email,password)

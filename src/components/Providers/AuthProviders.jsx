@@ -13,10 +13,12 @@ const AuthProviders = ({children}) => {
    const [lodding,UseLodding] = useState(true)
 
    const crateUser = (email,password) =>{
+    UseLodding(true);
     return createUserWithEmailAndPassword(auth,email,password) 
    }
 
    const crateLogin = (email,password) =>{
+    UseLodding(true);
     return signInWithEmailAndPassword(auth,email,password)
    }
 
